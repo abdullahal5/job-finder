@@ -2,7 +2,7 @@ import { IoLocationSharp } from "react-icons/io5";
 
 const CompanyCard = () => {
   return (
-    <div className="lg:w-96 md:w-96 w-80  h-auto border rounded-xl px-2 py-4 group hover:bg-purple-700 duration-300 cursor-pointer border-purple-800">
+    <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-2 py-4 group hover:bg-purple-700 duration-300 cursor-pointer border-purple-800">
       <div className="flex items-center justify-between">
         <div className="flex items-start gap-3">
           <div className="p-2 border rounded-full inline-block bg-white">

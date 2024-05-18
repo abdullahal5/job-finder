@@ -4,6 +4,7 @@ import Jobs from "../pages/Jobs/Jobs.jsx";
 import Company from "../pages/company/Company.jsx";
 import Login from "../pages/Login/Login.jsx";
 import SignUp from "../pages/Signup/SignUp.jsx";
+import Contact from "../pages/contact/Contact.jsx";
 
 const Root = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const Root = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
 ]);
 

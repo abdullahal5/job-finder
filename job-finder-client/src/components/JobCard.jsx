@@ -4,8 +4,8 @@ import { IoLocationSharp } from "react-icons/io5";
 
 const JobCard = () => {
   return (
-    <div className="">
-      <div className="border lg:w-96 md:w-80 w-80 rounded-lg px-3 py-3 hover:border-purple-700 duration-300 bg-gradient-to-tl to-purple-50 from-rose-50">
+    <div >
+      <div className="border lg:w-96 md:w-80 w-auto rounded-lg px-3 py-3 hover:border-purple-700 duration-300 bg-gradient-to-tl to-purple-50 from-rose-50">
         <div className="flex items-center justify-between ">
           <div className="flex items-start gap-3">
             <div className="border inline-flex p-1 rounded-lg bg-gray-100">

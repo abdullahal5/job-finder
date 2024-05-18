@@ -11,7 +11,7 @@ const Banner = () => {
         <div className="w-32 h-32 rounded-full blur-3xl bg-opacity-60 bg-gradient-to-r from-blue-200 via-rose-300 to-violet-300"></div>
       </div>
       <div>
-        <div className="pt-36 text-center px-2 mx-auto">
+        <div className="lg:pt-36 md:pt-36 pt-5 text-center px-2 mx-auto">
           <h1 className="lg:text-6xl md:text-5xl text-5xl text-[#3F3F46]">
             Search Apply & <br /> Get
             <span className="text-purple-800"> Your Dream </span>Job <br />

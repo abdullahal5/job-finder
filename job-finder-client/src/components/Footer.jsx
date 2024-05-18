@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="flex lg:flex-row md:flex-row flex-col lg:items-start md:items-start items-center justify-around gap-5 text-zinc-600">
         <div className="w-[300px] dark:text-zinc-300 lg:text-start md:text-start text-center">
           <div className="lg:w-auto md:w-auto w-full">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center lg:justify-start md:justify-start gap-2">
               <img
                 className="w-10"
                 src="https://i.ibb.co/PzM4Gjs/search.png"
@@ -47,12 +47,6 @@ const Footer = () => {
             >
               Company
             </Link>
-            {/* <Link
-              className="hover:text-violet-500 hover:underline border-violet-500"
-              href="/achievements"
-            >
-              Achievements
-            </Link> */}
           </div>
         </div>
         <div className="dark:text-zinc-300 text-center">

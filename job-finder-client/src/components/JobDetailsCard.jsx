@@ -30,7 +30,7 @@ const JobDetailsCard = () => {
         <p className="text-sm text-gray-500 flex items-center justify-start gap-1 pt-1">
           <IoLocationSharp /> San Franscisco
         </p>
-        <div className="flex items-center gap-5 py-3 text-sm text-gray-700">
+        <div className="flex items-center lg:justify-start md:justify-start justify-center gap-5 py-3 text-sm text-gray-700">
           <div>
             <p>
               <MdWork className="inline" /> Experience

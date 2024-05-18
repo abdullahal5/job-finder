@@ -11,8 +11,8 @@ const Company = () => {
           Here
         </h1>
         <div className="flex items-center justify-center my-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-2">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">
@@ -41,7 +41,7 @@ const Company = () => {
                 soluta placeat. Totam, facilis?
               </p>
             </div>
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">
@@ -70,7 +70,7 @@ const Company = () => {
                 soluta placeat. Totam, facilis?
               </p>
             </div>
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">
@@ -99,7 +99,7 @@ const Company = () => {
                 soluta placeat. Totam, facilis?
               </p>
             </div>
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">
@@ -128,7 +128,7 @@ const Company = () => {
                 soluta placeat. Totam, facilis?
               </p>
             </div>
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">
@@ -157,7 +157,7 @@ const Company = () => {
                 soluta placeat. Totam, facilis?
               </p>
             </div>
-            <div className="lg:w-96 md:w-96 w-80 h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
+            <div className="lg:w-96 md:w-96 w-auto h-auto border rounded-xl px-4 py-4 border-purple-800 cursor-pointer hover:bg-purple-700 group duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className="p-2 border rounded-full inline-block bg-white">

@@ -29,8 +29,8 @@ const Trending = () => {
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-center pt-10 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center">
+        <div className="flex items-center justify-center pt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center w-full mx-2">
             <JobCard />
             <JobCard />
             <JobCard />
