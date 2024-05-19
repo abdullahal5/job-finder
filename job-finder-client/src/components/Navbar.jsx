@@ -18,7 +18,7 @@ const Navbar = () => {
     <>
       <div className="fixed z-50 backdrop-blur-md backdrop:filter bg-zinc-50 dark:bg-neutral-900 dark:bg-transparent dark:bg-opacity-80 bg-opacity-60 border-2 bg-transparent py-5 border-gray-200 mx-auto w-full lg:block md:block hidden">
         <div className="flex items-center justify-between lg:w-[1300px] md:w-[1100px] px-5 mx-auto">
-          <Link>
+          <Link to="/">
             <div className="flex items-center gap-2">
               <img
                 className="w-10"
