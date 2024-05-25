@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { MdLogin } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
+import { FaCrown, FaRegUser } from "react-icons/fa";
 import { TfiLayoutGrid2 } from "react-icons/tfi";
 import { IoSearch } from "react-icons/io5";
 import { RiCustomerService2Fill } from "react-icons/ri";
@@ -12,6 +12,19 @@ const Navbar = () => {
     { id: 0, name: "Home", path: "" },
     { id: 1, name: "Jobs", path: "jobs" },
     { id: 2, name: "Company", path: "company" },
+    { id: 3, name: "Contact", path: "contact" },
+    {
+      id: 4,
+      name: (
+        <>
+          <div className="flex items-center gap-1 bg-purple-600 rounded-full px-3 py-[7px] text-white text-sm">
+            <FaCrown fontSize="1.3rem" className="text-yellow-400 mr-1" />
+            Upgrade
+          </div>
+        </>
+      ),
+      path: "pro",
+    },
   ];
 
   return (
@@ -47,7 +60,7 @@ const Navbar = () => {
             ))}
           </div>
           <div>
-            <Link to="/login">
+            <Link to="/authentication">
               <button className="bg-purple-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 focus:bg-purple-700 active:bg-purple-800">
                 Login <MdLogin />
               </button>
@@ -56,7 +69,7 @@ const Navbar = () => {
         </div>
       </div>
       <nav className="fixed z-50 top-2 right-2 left-2 w-auto backdrop-blur-md backdrop:filter bg-zinc-50 bg-opacity-60 border-2 bg-transparent py-2 dark:bg-neutral-900 dark:bg-transparent dark:bg-opacity-80 dark:border-t-violet-500/10 dark:border-b-0 dark:border-l-0 dark:border-r-0 border-gray-200 lg:hidden md:hidden block h-14 rounded-2xl">
-        <div className="items-center gap-10 tracking-wider flex justify-around text center mx-auto relative dark:text-zinc-300">
+        <div className="items-center flex justify-center gap-10 text center mx-auto relative dark:text-zinc-300 px-10">
           <Link
             to="/"
             className={`${
@@ -118,16 +131,16 @@ const Navbar = () => {
             )}
           </Link>
           <Link
-            to="/user"
+            to="/authentication"
             className={`${
-              location.pathname === "/user"
+              location.pathname === "/authentication"
                 ? "text-violet-500 flex flex-col justify-center items-center"
                 : ""
             }`}
           >
             <FaRegUser className="hover:text-violet-500 h-[20px] w-[20px]" />
-            {location.pathname === "/user" ? (
-              <p className="text-sm uppercase">User</p>
+            {location.pathname === "/authentication" ? (
+              <p className="text-sm uppercase">Auth</p>
             ) : (
               ""
             )}

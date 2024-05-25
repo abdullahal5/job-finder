@@ -2,14 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home.jsx";
 import Jobs from "../pages/Jobs/Jobs.jsx";
 import Company from "../pages/company/Company.jsx";
-import Login from "../pages/Login/Login.jsx";
-import SignUp from "../pages/Signup/SignUp.jsx";
 import Contact from "../pages/contact/Contact.jsx";
+import Authentication from "../pages/Authentication/Authentication.jsx";
+import ErrorPage from "../pages/ErrorPage.jsx";
+import Upgrade from "../pages/pro/Upgrade.jsx";
 
 const Root = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/jobs",
@@ -20,16 +22,16 @@ const Root = createBrowserRouter([
     element: <Company />,
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
+    path: "/authentication",
+    element: <Authentication />,
   },
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/pro",
+    element: <Upgrade />,
   },
 ]);
 

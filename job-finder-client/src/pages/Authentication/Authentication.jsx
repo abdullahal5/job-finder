@@ -6,7 +6,7 @@ import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 
-const Login = () => {
+const Authentication = () => {
   const [activeTab, setActiveTab] = useState("login");
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -18,7 +18,7 @@ const Login = () => {
     <div>
       <Navbar />
       <div className="lg:w-[1300px] md:w-[1100px] mx-auto">
-        <div className="flex items-center justify-center gap-10 pt-24">
+        <div className="flex lg:flex-row md:flex-row flex-col-reverse items-center justify-center gap-10 pt-24 mx-2">
           <div>
             <h1 className="text-5xl text-center">Welcome Back</h1>
             <p className="text-lg text-gray-600 pt-1 text-center">
@@ -174,8 +174,9 @@ const Login = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
 
-export default Login;
+export default Authentication;
