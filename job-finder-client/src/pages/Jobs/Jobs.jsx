@@ -330,7 +330,7 @@ const Jobs = () => {
                           className="w-7 inline"
                           alt=""
                         />{" "}
-                        Diamond
+                        Premium 
                       </strong>{" "}
                       user
                     </p>

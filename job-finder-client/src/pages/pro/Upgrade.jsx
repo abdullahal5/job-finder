@@ -60,18 +60,18 @@ const Upgrade = () => {
   return (
     <div className="bg-gradient-to-r from-[#e4e3f1] via-[#fdf5f5] to-[#f8e8ec] h-auto">
       <Navbar />
-      <div className="lg:w-[1300px] md:w-[1100px] mx-auto pt-28">
-        <h1 className="text-3xl text-center">
+      <div className="lg:w-[1300px] md:w-[1100px] mx-2 pt-28">
+        <h1 className="lg:text-5xl md:text-4xl text-3xl text-center">
           Our <span className="text-purple-700">Pricing</span> Planes
         </h1>
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-6 xl:gap-10 pt-10">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-6 xl:gap-10 lg:pt-10">
           {data?.map((item, idx) => (
             <div
               key={idx}
-              className={item.id === 2 ? "w-96 h-[650px]" : "w-80 h-[600px]"}
+              className={`${item.id === 2 ? "lg:w-96 md:w-96 lg:h-[650px] md:h-[650px]" : "w-80 h-[600px]"}`}
             >
               <div
-                className={`border-2 px-5 py-7 rounded-3xl text-center flex flex-col items-center justify-between bg-white`}
+                className={`border-2 px-5 py-7 rounded-3xl text-center flex flex-col items-center justify-between bg-white mx-2`}
                 style={{ borderColor: item.color }}
               >
                 <div className="pb-2">
@@ -81,7 +81,7 @@ const Upgrade = () => {
                     $<span>{item.price}</span>
                   </p>
                   {item.id === 2 && (
-                    <span className="text-center bg-purple-600 px-4 py-2 rounded-full text-white">
+                    <span className="text-center border px-4 py-2 rounded-full text-black border-purple-700">
                       Recommended
                     </span>
                   )}
