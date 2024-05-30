@@ -170,7 +170,9 @@ const Jobs = () => {
               </button>
             </form>
             <p className="text-center py-4 font-medium">
-              Total <span className="text-purple-700">52</span> jobs available
+              Total{" "}
+              <span className="text-purple-700">{mappingData()?.length}</span>{" "}
+              jobs available
             </p>
           </div>
         </div>
