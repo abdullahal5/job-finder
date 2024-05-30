@@ -7,6 +7,8 @@ import Authentication from "../pages/Authentication/Authentication.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import Upgrade from "../pages/pro/Upgrade.jsx";
 
+
+
 const Root = createBrowserRouter([
   {
     path: "/",

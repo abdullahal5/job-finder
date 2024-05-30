@@ -9,23 +9,23 @@ const GetAllDataFromDB = async (query) => {
   let search = {};
 
   if (query) {
-    const regex = new RegExp(query, "i");
+    const words = query.trim().split(/\s+/);
+    const regexes = words.map((word) => new RegExp(word, "i"));
 
     search = {
       $or: [
-        { jobPostName: { $regex: regex } },
-        { location: { $regex: regex } },
-        { jobSector: { $regex: regex } },
-        { jobType: { $regex: regex } },
-        { companyName: { $regex: regex } },
-        { experienceLevel: { $regex: regex } },
-        { salary: { $regex: regex } },
-        { area: { $regex: regex } },
+        ...regexes.map((regex) => ({ jobPostName: { $regex: regex } })),
+        ...regexes.map((regex) => ({ location: { $regex: regex } })),
+        ...regexes.map((regex) => ({ jobSector: { $regex: regex } })),
+        ...regexes.map((regex) => ({ jobType: { $regex: regex } })),
+        ...regexes.map((regex) => ({ companyName: { $regex: regex } })),
+        ...regexes.map((regex) => ({ experienceLevel: { $regex: regex } })),
+        ...regexes.map((regex) => ({ salary: { $regex: regex } })),
+        ...regexes.map((regex) => ({ area: { $regex: regex } })),
       ],
     };
-
-    const result = await JobModel.find(search);
-    return result;
+    const results = await JobModel.find(search);
+    return results;
   } else {
     const result = await JobModel.find();
     return result;

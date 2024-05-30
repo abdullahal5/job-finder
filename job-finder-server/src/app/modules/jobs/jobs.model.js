@@ -54,10 +54,10 @@ const JobSchema = new Schema(
         "hybrid",
         "onsite",
         "part time",
-        "full time"
+        "full time",
       ],
     },
-    salary: {
+    stipend: {
       type: String,
       required: true,
     },

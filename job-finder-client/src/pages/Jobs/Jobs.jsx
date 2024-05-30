@@ -2,10 +2,70 @@ import Footer from "../../components/Footer";
 import JobDetailsCard from "../../components/JobDetailsCard";
 import Navbar from "../../components/Navbar";
 import { TbFilterCheck } from "react-icons/tb";
-import { FaCrown } from "react-icons/fa";
+import { FaCrown, FaSpinner } from "react-icons/fa";
 import Video from "../../components/Video";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Jobs = () => {
+  const axiosPublic = useAxiosPublic();
+  const [allJobPost, setAllJobPost] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [takeInputText, setTakeInputText] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSectors, setselectedSectors] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axiosPublic.get(
+          `/api/v1/job/get-all?search=${searchQuery}`
+        );
+        const data = response.data.data;
+        setAllJobPost(data);
+      } catch (error) {
+        console.log(error.message);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [axiosPublic, searchQuery]);
+
+  const handleGetSearch = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSearchQuery(takeInputText);
+    setLoading(false);
+  };
+
+  const hs = (value) => {
+    setTakeInputText(value);
+  };
+
+  const filterDataWithJobSectors = () => {
+    const filteredData = allJobPost?.filter((job) => {
+      const isMatched = selectedSectors.some(
+        (sector) => job.jobSector.toLowerCase() === sector.toLowerCase()
+      );
+      if (isMatched) {
+        return isMatched;
+      }
+    });
+    return filteredData || [];
+  };
+
+  const mappingData = () => {
+    const filteredData = filterDataWithJobSectors();
+    if (selectedSectors?.length > 0) {
+      return filteredData;
+    } else {
+      return allJobPost;
+    }
+  };
   const handleSector = () => {
     const checkedSectors = Array.from(
       document
@@ -14,8 +74,7 @@ const Jobs = () => {
     )
       .filter((checkbox) => checkbox.checked)
       .map((checkbox) => checkbox.value);
-
-    localStorage.setItem("sector", checkedSectors);
+    setselectedSectors(checkedSectors);
   };
 
   const handleJobType = () => {
@@ -93,17 +152,23 @@ const Jobs = () => {
                 Here
               </h1>
             </div>
-            <div className="text-center mx-5">
+            <form onSubmit={handleGetSearch} className="text-center mx-5">
               <input
-                type="text"
-                className="mx-auto lg:w-96 md:w-96 w-full text-purple-700 border outline-none h-14 rounded-xl px-4 border-purple-700"
-                placeholder="Search Jobs"
+                type="search"
+                className="mx-auto lg:w-96 md:w-96 w-full text-purple-700 border outline-none h-14 rounded-xl px-4 border-purple-700 "
+                placeholder="Search Jobs here"
+                name="search"
+                value={takeInputText}
+                onChange={(e) => hs(e.target.value)}
                 required
               />
-              <button className="px-4 py-3 lg:mt-0 md:mt-0 mt-2 border rounded-lg ml-5 hover:bg-purple-700 hover:text-white border-purple-700 text-purple-700 duration-300">
+              <button
+                type="submit"
+                className="px-4 py-3 lg:mt-0 md:mt-0 mt-2 border rounded-lg ml-5 hover:bg-purple-700 hover:text-white border-purple-700 text-purple-700 duration-300"
+              >
                 Search
               </button>
-            </div>
+            </form>
             <p className="text-center py-4 font-medium">
               Total <span className="text-purple-700">52</span> jobs available
             </p>
@@ -296,12 +361,19 @@ const Jobs = () => {
             </div>
             <div className="flex-1 lg:mt-0 md:mt-0 mt-32">
               <div className="grid grid-cols-1 gap-5 mx-2">
-                <JobDetailsCard />
-                <JobDetailsCard />
-                <JobDetailsCard />
-                <JobDetailsCard />
-                <JobDetailsCard />
-                <JobDetailsCard />
+                {loading ? (
+                  <div className="flex items-center justify-center h-[40vh]">
+                    <FaSpinner fontSize={"2.5rem"} className="animate-spin" />
+                  </div>
+                ) : mappingData().length <= 0 ? (
+                  <div className="flex items-center justify-center h-[40vh]">
+                    <p className="text-gray-500 text-xl">No job posts found</p>
+                  </div>
+                ) : (
+                  mappingData().map((item) => (
+                    <JobDetailsCard key={item._id} data={item} />
+                  ))
+                )}
               </div>
             </div>
             <div className="w-80 border rounded-xl bg-white h-[600px] shadow-md lg:block md:block hidden px-5 py-4">
@@ -330,7 +402,7 @@ const Jobs = () => {
                           className="w-7 inline"
                           alt=""
                         />{" "}
-                        Premium 
+                        Premium
                       </strong>{" "}
                       user
                     </p>
