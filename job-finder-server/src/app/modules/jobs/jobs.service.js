@@ -6,14 +6,14 @@ const createJobPostIntoDB = async (body) => {
 };
 
 const GetAllDataFromDB = async (query) => {
-  let search = {};
+  if (query?.search || query?.jobSector || query?.jobType) {
+    let search = [];
 
-  if (query) {
-    const words = query.trim().split(/\s+/);
-    const regexes = words.map((word) => new RegExp(word, "i"));
+    if (query?.search) {
+      const words = query.search.trim().split(/\s+/);
+      const regexes = words.map((word) => new RegExp(word, "i"));
 
-    search = {
-      $or: [
+      search.push(
         ...regexes.map((regex) => ({ jobPostName: { $regex: regex } })),
         ...regexes.map((regex) => ({ location: { $regex: regex } })),
         ...regexes.map((regex) => ({ jobSector: { $regex: regex } })),
@@ -21,14 +21,27 @@ const GetAllDataFromDB = async (query) => {
         ...regexes.map((regex) => ({ companyName: { $regex: regex } })),
         ...regexes.map((regex) => ({ experienceLevel: { $regex: regex } })),
         ...regexes.map((regex) => ({ salary: { $regex: regex } })),
-        ...regexes.map((regex) => ({ area: { $regex: regex } })),
-      ],
-    };
-    const results = await JobModel.find(search);
+        ...regexes.map((regex) => ({ area: { $regex: regex } }))
+      );
+    }
+
+    if (query?.jobSector) {
+      const sectors = query.jobSector.split(",");
+      const sectorRegexes = sectors.map((sector) => new RegExp(sector, "i"));
+      search.push({ jobSector: { $in: sectorRegexes } });
+    }
+
+    if (query?.jobType) {
+      const types = query.jobType.split(",");
+      const typeRegexes = types.map((type) => new RegExp(type, "i"));
+      search.push({ jobType: { $in: typeRegexes } });
+    }
+
+    const results = await JobModel.find({ $or: search });
     return results;
   } else {
-    const result = await JobModel.find();
-    return result;
+    const results = await JobModel.find();
+    return results;
   }
 };
 

@@ -22,12 +22,10 @@ const CreateJobPost = catchAsync(async (req, res) => {
 
 const GetAllJobPost = catchAsync(async (req, res) => {
   let result;
-  const query = req.query.search;
+  const query = req.query;
 
   if (query) {
     result = await GetAllDataFromDB(query);
-  } else {
-    result = await GetAllDataFromDB();
   }
 
   if (result.length <= 0) {

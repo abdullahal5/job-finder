@@ -14,18 +14,19 @@ const Jobs = () => {
   const [takeInputText, setTakeInputText] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSectors, setselectedSectors] = useState([]);
+  const [jobTypes, setJobTypes] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const response = await axiosPublic.get(
-          `/api/v1/job/get-all?search=${searchQuery}`
+          `/api/v1/job/get-all?search=${searchQuery}&jobSector=${selectedSectors}&jobType=${jobTypes}`
         );
         const data = response.data.data;
         setAllJobPost(data);
       } catch (error) {
-        console.log(error.message);
+        setAllJobPost([]);
         setLoading(false);
       } finally {
         setLoading(false);
@@ -33,7 +34,7 @@ const Jobs = () => {
     };
 
     fetchData();
-  }, [axiosPublic, searchQuery]);
+  }, [axiosPublic, searchQuery, selectedSectors, jobTypes]);
 
   const handleGetSearch = (e) => {
     e.preventDefault();
@@ -46,26 +47,6 @@ const Jobs = () => {
     setTakeInputText(value);
   };
 
-  const filterDataWithJobSectors = () => {
-    const filteredData = allJobPost?.filter((job) => {
-      const isMatched = selectedSectors.some(
-        (sector) => job.jobSector.toLowerCase() === sector.toLowerCase()
-      );
-      if (isMatched) {
-        return isMatched;
-      }
-    });
-    return filteredData || [];
-  };
-
-  const mappingData = () => {
-    const filteredData = filterDataWithJobSectors();
-    if (selectedSectors?.length > 0) {
-      return filteredData;
-    } else {
-      return allJobPost;
-    }
-  };
   const handleSector = () => {
     const checkedSectors = Array.from(
       document
@@ -85,8 +66,7 @@ const Jobs = () => {
     )
       .filter((checkbox) => checkbox.checked)
       .map((checkbox) => checkbox.value);
-
-    console.log(checkedSectors);
+    setJobTypes(checkedSectors);
   };
 
   const handleStipend = (e) => {
@@ -152,27 +132,56 @@ const Jobs = () => {
                 Here
               </h1>
             </div>
-            <form onSubmit={handleGetSearch} className="text-center mx-5">
-              <input
-                type="search"
-                className="mx-auto lg:w-96 md:w-96 w-full text-purple-700 border outline-none h-14 rounded-xl px-4 border-purple-700 "
-                placeholder="Search Jobs here"
-                name="search"
-                value={takeInputText}
-                onChange={(e) => hs(e.target.value)}
-                required
-              />
-              <button
-                type="submit"
-                className="px-4 py-3 lg:mt-0 md:mt-0 mt-2 border rounded-lg ml-5 hover:bg-purple-700 hover:text-white border-purple-700 text-purple-700 duration-300"
-              >
-                Search
-              </button>
-            </form>
+            <div className="relative">
+              <form onSubmit={handleGetSearch} className="text-center mx-5 ">
+                <input
+                  type="search"
+                  className="mx-auto lg:w-96 md:w-96 w-full text-purple-700 border outline-none h-14 rounded-xl px-4 border-purple-700 "
+                  placeholder="Search Jobs here"
+                  name="search"
+                  value={takeInputText}
+                  onChange={(e) => hs(e.target.value)}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-3 lg:mt-0 md:mt-0 mt-2 border rounded-lg ml-5 hover:bg-purple-700 hover:text-white border-purple-700 text-purple-700 duration-300"
+                >
+                  Search
+                </button>
+              </form>
+              {takeInputText.length > 0 && (
+                <div className="absolute top-48  inset-0 flex items-center justify-center">
+                  <div className="h-64 w-[470px] bg-white shadow-xl rounded-xl border mx-2 my-1">
+                    {allJobPost?.map((item) => (
+                      <div key={item._id}>
+                        <div className="flex items-center ">
+                          <div>
+                            <img
+                              className="w-14 h-14"
+                              src={item?.companyLogo}
+                              alt=""
+                            />
+                          </div>
+                          <div>
+                            <h1 className="">
+                              {item?.jobPostName} .{" "}
+                              <span className="text-xs">{item?.jobSector}</span>{" "}
+                              . <span className="text-xs">{item?.jobType}</span>
+                            </h1>
+                          </div>
+                        </div>
+                        <hr className="border-dashed" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
             <p className="text-center py-4 font-medium">
               Total{" "}
-              <span className="text-purple-700">{mappingData()?.length}</span>{" "}
-              jobs available
+              <span className="text-purple-700">{allJobPost?.length}</span> jobs
+              available
             </p>
           </div>
         </div>
@@ -367,12 +376,12 @@ const Jobs = () => {
                   <div className="flex items-center justify-center h-[40vh]">
                     <FaSpinner fontSize={"2.5rem"} className="animate-spin" />
                   </div>
-                ) : mappingData().length <= 0 ? (
+                ) : allJobPost.length <= 0 ? (
                   <div className="flex items-center justify-center h-[40vh]">
                     <p className="text-gray-500 text-xl">No job posts found</p>
                   </div>
                 ) : (
-                  mappingData().map((item) => (
+                  allJobPost.map((item) => (
                     <JobDetailsCard key={item._id} data={item} />
                   ))
                 )}
