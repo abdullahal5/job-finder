@@ -6,8 +6,7 @@ import Contact from "../pages/contact/Contact.jsx";
 import Authentication from "../pages/Authentication/Authentication.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import Upgrade from "../pages/pro/Upgrade.jsx";
-
-
+import JobDynamic from "../pages/jobDynamic/JobDynamic.jsx";
 
 const Root = createBrowserRouter([
   {
@@ -34,6 +33,10 @@ const Root = createBrowserRouter([
   {
     path: "/pro",
     element: <Upgrade />,
+  },
+  {
+    path: "/jobs/:id",
+    element: <JobDynamic />,
   },
 ]);
 

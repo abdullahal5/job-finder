@@ -6,27 +6,29 @@ import { FaCrown, FaSpinner } from "react-icons/fa";
 import Video from "../../components/Video";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+// import { Link } from "react-router-dom";
 
 const Jobs = () => {
   const axiosPublic = useAxiosPublic();
   const [allJobPost, setAllJobPost] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [takeInputText, setTakeInputText] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSectors, setselectedSectors] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
+  const [stipend, setStipend] = useState(7000);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const response = await axiosPublic.get(
-          `/api/v1/job/get-all?search=${searchQuery}&jobSector=${selectedSectors}&jobType=${jobTypes}`
+          `/job/get-all?search=${searchQuery}&jobSector=${selectedSectors}&jobType=${jobTypes}`
         );
         const data = response.data.data;
         setAllJobPost(data);
       } catch (error) {
         setAllJobPost([]);
+        setSearchQuery("")
         setLoading(false);
       } finally {
         setLoading(false);
@@ -38,13 +40,11 @@ const Jobs = () => {
 
   const handleGetSearch = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setSearchQuery(takeInputText);
-    setLoading(false);
-  };
-
-  const hs = (value) => {
-    setTakeInputText(value);
+    const value = e.target.search.value.trim();
+    console.log(value.length)
+    if (value.length > 0) {
+      setSearchQuery(value);
+    } 
   };
 
   const handleSector = () => {
@@ -69,8 +69,8 @@ const Jobs = () => {
     setJobTypes(checkedSectors);
   };
 
-  const handleStipend = (e) => {
-    console.log(parseInt(e.target.value));
+  const handleStipend = async (e) => {
+    setStipend(parseInt(e.target.value));
   };
 
   const handleLocation = () => {
@@ -135,12 +135,10 @@ const Jobs = () => {
             <div className="relative">
               <form onSubmit={handleGetSearch} className="text-center mx-5 ">
                 <input
-                  type="search"
+                  type="text"
                   className="mx-auto lg:w-96 md:w-96 w-full text-purple-700 border outline-none h-14 rounded-xl px-4 border-purple-700 "
                   placeholder="Search Jobs here"
                   name="search"
-                  value={takeInputText}
-                  onChange={(e) => hs(e.target.value)}
                   required
                 />
                 <button
@@ -150,33 +148,60 @@ const Jobs = () => {
                   Search
                 </button>
               </form>
-              {takeInputText.length > 0 && (
-                <div className="absolute top-48  inset-0 flex items-center justify-center">
-                  <div className="h-64 w-[470px] bg-white shadow-xl rounded-xl border mx-2 my-1">
-                    {allJobPost?.map((item) => (
-                      <div key={item._id}>
-                        <div className="flex items-center ">
-                          <div>
-                            <img
-                              className="w-14 h-14"
-                              src={item?.companyLogo}
-                              alt=""
-                            />
+              {/* <div>
+                {takeInputText.length > 0 && (
+                  <div className="absolute top-[370px] inset-0 flex items-center justify-center">
+                    <div className="h-auto w-[470px] bg-white shadow-xl rounded-xl border mx-2 ">
+                      {allJobPost
+                        ?.slice(0, 8)
+                        .filter((item) => {
+                          const searchTerm = takeInputText.toLowerCase();
+                          const jobTitle = item.jobPostName.toLowerCase();
+                          const jobSector = item.jobSector.toLowerCase();
+                          const jobType = item.jobType.toLowerCase();
+                          // console.log(
+                          //   item.jobType.toLowerCase().length
+                          // );
+                          return (
+                            jobTitle.includes(searchTerm) ||
+                            jobSector.includes(searchTerm) ||
+                            jobType.includes(searchTerm)
+                          );
+                        })
+                        .map((item) => (
+                          <div
+                            className="px-2 duration-200 py-2 hover:bg-gray-200 border-b border-dashed"
+                            key={item._id}
+                          >
+                            <Link to={`/jobs/${item._id}`}>
+                              <div className="flex items-center">
+                                <div>
+                                  <img
+                                    className="w-14 h-14"
+                                    src={item?.companyLogo}
+                                    alt=""
+                                  />
+                                </div>
+                                <div>
+                                  <h1 className="pl-1">
+                                    {item?.jobPostName} .{" "}
+                                    <span className="text-xs">
+                                      {item?.jobSector}
+                                    </span>{" "}
+                                    .{" "}
+                                    <span className="text-xs">
+                                      {item?.jobType}
+                                    </span>
+                                  </h1>
+                                </div>
+                              </div>
+                            </Link>
                           </div>
-                          <div>
-                            <h1 className="">
-                              {item?.jobPostName} .{" "}
-                              <span className="text-xs">{item?.jobSector}</span>{" "}
-                              . <span className="text-xs">{item?.jobType}</span>
-                            </h1>
-                          </div>
-                        </div>
-                        <hr className="border-dashed" />
-                      </div>
-                    ))}
+                        ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div> */}
             </div>
             <p className="text-center py-4 font-medium">
               Total{" "}
@@ -277,11 +302,11 @@ const Jobs = () => {
                   className="space-y-1"
                 >
                   <div className="flex items-center gap-3">
-                    <input type="checkbox" value="On-site" />
+                    <input type="checkbox" value="on-site" />
                     On-site
                   </div>
                   <div className="flex items-center gap-3">
-                    <input type="checkbox" value="Remote" />
+                    <input type="checkbox" value="remote" />
                     Remote
                   </div>
                   <div className="flex items-center gap-3">
@@ -311,8 +336,7 @@ const Jobs = () => {
                   id="stipend"
                   max={10000}
                   onChange={handleStipend}
-                  defaultValue={4000}
-                  step={2000}
+                  defaultValue={stipend}
                 />
                 <div className="flex justify-between mt-1 text-gray-600">
                   <span>0</span>

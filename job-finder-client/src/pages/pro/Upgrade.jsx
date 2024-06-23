@@ -60,7 +60,7 @@ const Upgrade = () => {
   return (
     <div className="bg-gradient-to-r from-[#e4e3f1] via-[#fdf5f5] to-[#f8e8ec] h-auto">
       <Navbar />
-      <div className="lg:w-[1300px] md:w-[1100px] mx-2 pt-28">
+      <div className="lg:w-[1300px] md:w-[1100px] lg:mx-auto md:mx-auto mx-2 pt-28">
         <h1 className="lg:text-5xl md:text-4xl text-3xl text-center">
           Our <span className="text-purple-700">Pricing</span> Planes
         </h1>
@@ -68,7 +68,11 @@ const Upgrade = () => {
           {data?.map((item, idx) => (
             <div
               key={idx}
-              className={`${item.id === 2 ? "lg:w-96 md:w-96 lg:h-[650px] md:h-[650px]" : "w-80 h-[600px]"}`}
+              className={`${
+                item.id === 2
+                  ? "lg:w-96 md:w-96 lg:h-[650px] md:h-[650px]"
+                  : "w-80 h-[600px]"
+              }`}
             >
               <div
                 className={`border-2 px-5 py-7 rounded-3xl text-center flex flex-col items-center justify-between bg-white mx-2`}
@@ -89,7 +93,11 @@ const Upgrade = () => {
                 <div className="space-y-3 mt-5">
                   {item?.features?.map((feature, idx) => (
                     <p className="flex items-center gap-3" key={idx}>
-                      <FaCheck fontSize="1.1rem" className="text-green-600 inline" /> {feature}
+                      <FaCheck
+                        fontSize="1.1rem"
+                        className="text-green-600 inline"
+                      />{" "}
+                      {feature}
                     </p>
                   ))}
                 </div>

@@ -18,11 +18,11 @@ const JobSchema = new Schema(
     experienceLevel: {
       type: String,
       enum: [
-        "Entry Level",
-        "Mid Level",
-        "Senior Level",
-        "Executive",
-        "Senior-Mid",
+        "entry level",
+        "mid level",
+        "senior level",
+        "executive",
+        "senior-mid",
       ],
     },
     deadline: {
@@ -32,18 +32,18 @@ const JobSchema = new Schema(
     jobSector: {
       type: String,
       enum: [
-        "Web Development",
-        "Software Development",
-        "Hardware Engineering",
-        "Web Design",
-        "Graphic Design",
-        "E-commerce",
-        "Music",
-        "Sports",
-        "Travel",
-        "Marketing",
-        "Teaching",
-        "Blog",
+        "web development",
+        "software development",
+        "hardware engineering",
+        "web design",
+        "graphic design",
+        "e-commerce",
+        "music",
+        "sports",
+        "travel",
+        "marketing",
+        "teaching",
+        "blog",
       ],
     },
     jobType: {
@@ -60,6 +60,7 @@ const JobSchema = new Schema(
     stipend: {
       type: String,
       required: true,
+      
     },
     companyName: {
       type: String,

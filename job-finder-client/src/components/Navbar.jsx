@@ -68,7 +68,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <nav className="fixed z-50 top-2 right-2 left-2 w-auto backdrop-blur-md backdrop:filter bg-zinc-50 bg-opacity-60 border-2 bg-transparent py-2 dark:bg-neutral-900 dark:bg-transparent dark:bg-opacity-80 dark:border-t-violet-500/10 dark:border-b-0 dark:border-l-0 dark:border-r-0 border-gray-200 lg:hidden md:hidden block h-14 rounded-2xl">
+      <nav className="fixed z-50 top-2 right-2 left-2 w-auto backdrop-blur-md backdrop:filter bg-zinc-50 bg-opacity-60 border-2 border-black/30 bg-transparent py-2 dark:bg-neutral-900 dark:bg-transparent dark:bg-opacity-80 dark:border-t-violet-500/10 dark:border-b-0 dark:border-l-0 dark:border-r-0 border-gray-200 lg:hidden md:hidden block h-14 rounded-2xl">
         <div className="items-center flex justify-center gap-10 text center mx-auto relative dark:text-zinc-300 px-10">
           <Link
             to="/"

@@ -4,6 +4,7 @@ import { MdWork } from "react-icons/md";
 import { BsCash } from "react-icons/bs";
 import { RxLapTimer } from "react-icons/rx";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const JobDetailsCard = ({ data }) => {
   return (
@@ -66,9 +67,11 @@ const JobDetailsCard = ({ data }) => {
         <div className="flex items-center justify-between pt-2">
           <p className="text-3xl">${data?.stipend}/mo</p>
           <div>
-            <button className="bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 focus:bg-purple-600 active:bg-purple-800">
-              Apply Now
-            </button>
+            <Link to={`/jobs/${data?._id}`}>
+              <button className="bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 focus:bg-purple-600 active:bg-purple-800">
+                Apply Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

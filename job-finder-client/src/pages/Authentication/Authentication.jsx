@@ -170,11 +170,13 @@ const Authentication = () => {
           </div>
           <div></div>
           <div>
-            <img src="https://i.ibb.co/vLKHwZK/Login.gif" alt="" />
+            <img
+              src="https://i.ibb.co/r0F893c/Login.gif"
+              alt=""
+            />
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

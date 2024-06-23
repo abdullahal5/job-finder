@@ -6,14 +6,14 @@ import { MdWork } from "react-icons/md";
 
 const Step = () => {
   return (
-    <div className="lg:w-[1300px] md:w-[1100px] mx-auto px-5">
+    <div className="lg:w-[1300px] md:w-[1100px] mx-auto">
       <h1 className="text-center gap-4 lg:text-5xl md:text-4xl text-3xl py-10">
         Follow These 4 Rules
         <span className="text-purple-800 "> For Getting A Job </span> Quickly
         <MdTipsAndUpdates className="text-purple-800 inline pl-1" />
       </h1>
       <div className="flex items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-10 md:gap-10 gap-5 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-5 md:gap-10 gap-5 items-center">
           <div className="border lg:w-80 md:w-80 w-full lg:h-56 md:h-auto h-auto rounded-xl p-5 hover:scale-105 duration-300 hover:border-purple-700 cursor-pointer bg-white">
             <div className="border inline-flex p-4 rounded-full bg-rose-100">
               <FaUser fontSize="1.5rem" className="text-rose-700" />
